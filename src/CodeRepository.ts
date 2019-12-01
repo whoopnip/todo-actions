@@ -80,8 +80,8 @@ export async function scanCodeRepository(): Promise<CodeRepositoryState> {
         throw `Maybe you forgot to enable the GITHUB_TOKEN secret?`
       }
       let commitRef = '"$GITHUB_REF"';
-      if (process.env.TODO_COMMIT_BRANCH) {
-        commitRef = process.env.TODO_COMMIT_BRANCH;
+      if (process.env.INPUT_COMMITBRANCH) {
+        commitRef = process.env.INPUT_COMMITBRANCH;
       }
       // TEMP
       log.info(`git push "https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:${commitRef}`)

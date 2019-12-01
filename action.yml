@@ -1,7 +1,7 @@
 name: 'TODO Actions'
 description: 'Turn TODO comments inside source code into GitHub issues and closes them when they are gone.'
 inputs:
-  todo-commit-branch:  # id of input
+  commitBranch:  # id of input
     description: 'Branch to commit TODO changes into, default is current branch'
     required: true
     default: null
