@@ -79,8 +79,15 @@ export async function scanCodeRepository(): Promise<CodeRepositoryState> {
       if (!process.env.GITHUB_TOKEN) {
         throw `Maybe you forgot to enable the GITHUB_TOKEN secret?`
       }
+      let commitRef = '"$GITHUB_REF"';
+      if (process.env.TODO_COMMIT_BRANCH) {
+        commitRef = process.env.TODO_COMMIT_BRANCH;
+      }
+      // TEMP
+      log.info(`git push "https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:${commitRef}`)
+      // END TEMP
       execSync(
-        'git push "https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:"$GITHUB_REF"',
+        `git push "https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:${commitRef}`,
         { stdio: 'inherit' },
       )
     },
